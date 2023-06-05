@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Instrument", "Instrument\Instrument.csproj", "{C1631243-CA76-4656-B374-53D84FA73537}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerModule", "LoggerModule\LoggerModule.csproj", "{F471837A-B660-4249-80DA-98E8A7033DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingEngineServer", "TradingEngine\TradingEngineServer.csproj", "{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +16,19 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1631243-CA76-4656-B374-53D84FA73537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1631243-CA76-4656-B374-53D84FA73537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1631243-CA76-4656-B374-53D84FA73537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1631243-CA76-4656-B374-53D84FA73537}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F471837A-B660-4249-80DA-98E8A7033DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F471837A-B660-4249-80DA-98E8A7033DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F471837A-B660-4249-80DA-98E8A7033DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F471837A-B660-4249-80DA-98E8A7033DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
