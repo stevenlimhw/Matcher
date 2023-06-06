@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerModule", "LoggerModul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingEngineServer", "TradingEngine\TradingEngineServer.csproj", "{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Orders\Orders.csproj", "{C2680429-3DFC-4330-9451-D19A985DB88E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orderbook", "Orderbook\Orderbook.csproj", "{93D4F4B5-0682-4682-8440-66C14C73BEFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F1C694-2823-4B37-91CF-DDEDA1C62DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2680429-3DFC-4330-9451-D19A985DB88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2680429-3DFC-4330-9451-D19A985DB88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2680429-3DFC-4330-9451-D19A985DB88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2680429-3DFC-4330-9451-D19A985DB88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D4F4B5-0682-4682-8440-66C14C73BEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D4F4B5-0682-4682-8440-66C14C73BEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D4F4B5-0682-4682-8440-66C14C73BEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D4F4B5-0682-4682-8440-66C14C73BEFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
