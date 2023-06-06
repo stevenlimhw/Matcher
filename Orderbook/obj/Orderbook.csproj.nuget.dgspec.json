@@ -1,0 +1,174 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/steven/Documents/GitHub/TradingServer/Orderbook/Orderbook.csproj": {}
+  },
+  "projects": {
+    "/Users/steven/Documents/GitHub/TradingServer/Instrument/Instrument.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/steven/Documents/GitHub/TradingServer/Instrument/Instrument.csproj",
+        "projectName": "TradingEngineServer.Instrument",
+        "projectPath": "/Users/steven/Documents/GitHub/TradingServer/Instrument/Instrument.csproj",
+        "packagesPath": "/Users/steven/.nuget/packages/",
+        "outputPath": "/Users/steven/Documents/GitHub/TradingServer/Instrument/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/steven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/steven/Documents/GitHub/TradingServer/Orderbook/Orderbook.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/steven/Documents/GitHub/TradingServer/Orderbook/Orderbook.csproj",
+        "projectName": "TradingEngineServer.Orderbook",
+        "projectPath": "/Users/steven/Documents/GitHub/TradingServer/Orderbook/Orderbook.csproj",
+        "packagesPath": "/Users/steven/.nuget/packages/",
+        "outputPath": "/Users/steven/Documents/GitHub/TradingServer/Orderbook/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/steven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/steven/Documents/GitHub/TradingServer/Instrument/Instrument.csproj": {
+                "projectPath": "/Users/steven/Documents/GitHub/TradingServer/Instrument/Instrument.csproj"
+              },
+              "/Users/steven/Documents/GitHub/TradingServer/Orders/Orders.csproj": {
+                "projectPath": "/Users/steven/Documents/GitHub/TradingServer/Orders/Orders.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/steven/Documents/GitHub/TradingServer/Orders/Orders.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/steven/Documents/GitHub/TradingServer/Orders/Orders.csproj",
+        "projectName": "TradingEngineServer.Orders",
+        "projectPath": "/Users/steven/Documents/GitHub/TradingServer/Orders/Orders.csproj",
+        "packagesPath": "/Users/steven/.nuget/packages/",
+        "outputPath": "/Users/steven/Documents/GitHub/TradingServer/Orders/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/steven/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
