@@ -1,5 +1,11 @@
 namespace TradingEngineServer.Orders
 {
+    /*
+     *  Class representing a price level (or price limit).
+     *  Entries with the same price are on the same limit.
+     *  OrderbookEntry instances will form the nodes of a linked list, and the Limit
+     *  class will have a pointer to the first entry in the queue and the last entry in the queue.
+     */
     public class Limit
     {
         public Limit(long price)
@@ -45,6 +51,9 @@ namespace TradingEngineServer.Orders
             return orderQuantity;
         }
 
+        /*
+         *  Returns an list of immutable orders.
+         */
         public List<OrderRecord> GetLevelOrderRecords()
         {
             List<OrderRecord> orderRecords = new List<OrderRecord>();

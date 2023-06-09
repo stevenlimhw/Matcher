@@ -1,6 +1,12 @@
-## Trading Server Platform using C#
+## Trading Server using C#
 
-#### This repository is the main repository that contains two projects (which are submodules): TradingEngine and LoggerModule
+## Orderbook
+### Interfaces
+1. `IReadOnlyOrderbook` - read only (weakest permission)
+2. `IOrderEntryOrderbook` - read and write, implements `IReadOnlyOrderbook`
+3. `IRetrievalOrderbook` - allows mutation of orderbook outside of the Orderbook class (strongest permission), implements `IOrderEntryOrderbook`
+4. `IMatchingOrderbook` - implements `IRetrievalOrderbook` (strongest permission)
 
-- TradingEngine: https://github.com/stevenlimhw/TradingEngine
-- LoggerModule: https://github.com/stevenlimhw/LoggerModule
+### Implementations
+1. `Orderbook` implements `IRetrievalOrderbook`.
+2. 

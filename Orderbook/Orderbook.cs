@@ -35,15 +35,18 @@ namespace TradingEngineServer.Orderbook
                 // edge case when limit exists but it has no orders on it
                 if (limit.Head == null)
                 {
+                    // orderbookEntry will now be the only entry in the limit
                     limit.Head = orderbookEntry;
                     limit.Tail = orderbookEntry;
                 }
                 else
                 {
+                    // put the newly added order in front of the list,
+                    // and shift the the rest of the entries back
                     OrderbookEntry tailPointer = limit.Tail;
                     tailPointer.Next = orderbookEntry;
                     orderbookEntry.Previous = tailPointer;
-                    limit.Tail = orderbookEntry; // put the newly added order in front of the list
+                    limit.Tail = orderbookEntry;
                 }
                 internalOrderbook.Add(order.OrderId, orderbookEntry);
             }
@@ -61,12 +64,7 @@ namespace TradingEngineServer.Orderbook
             }
         }
 
-        public void CancelOrder(CancelOrder cancelOrder)
-        {
-            throw new NotImplementedException();
-        }
-
-        // cancel order, then add new order
+        // remove/cancel order, then add new order
         public void ChangeOrder(ModifyOrder modifyOrder)
         {
             if (_orders.TryGetValue(modifyOrder.OrderId, out OrderbookEntry orderbookEntry))

@@ -7,7 +7,7 @@ namespace TradingEngineServer.Orderbook
     {
         void AddOrder(Order order);
         void ChangeOrder(ModifyOrder modifyOrder);
-        void CancelOrder(CancelOrder cancelOrder);
+        void RemoveOrder(CancelOrder cancelOrder);
 
     }
 }
