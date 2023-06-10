@@ -44,7 +44,7 @@ namespace TradingEngineServer.Logging.LoggingConfiguration
         private static string FormatLogItem(LogInformation logItem)
         {
             return $"[{logItem.Now:yyyy-MM-dd HH-mm-ss.fffffff}] [{logItem.ThreadName,-30}{logItem.ThreadId:000}]" +
-                $"[{logItem.LogLevel}] {logItem.Message}";
+                $"[{logItem.LogLevel}] {logItem.Message}\n";
         }
 
         public void Dispose()

@@ -23,7 +23,10 @@ namespace TradingEngineServer.Core
             _logger.Information(nameof(TradingEngineServer), "Starting Trading Engine Server");
             while (!stoppingToken.IsCancellationRequested)
             {
-
+                for (int i = 0; i < 10; i++)
+                {
+                    _logger.Information(nameof(TradingEngineServer), i.ToString());
+                }
             }
             _logger.Information(nameof(TradingEngineServer), "Stopping Trading Engine Server");
             return Task.CompletedTask;
