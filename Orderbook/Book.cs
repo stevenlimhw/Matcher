@@ -7,14 +7,14 @@ namespace TradingEngineServer.Orderbook
      *  Orderbook class stores the states of the orderbook entries, and provides functions
      *  that allows operations on those states (e.g. adding, changing, removing).
      */
-    public class Orderbook : IRetrievalOrderbook
+    public class Book : IRetrievalOrderbook
     {
         private readonly Security _instrument;
         private readonly Dictionary<long, OrderbookEntry> _orders = new Dictionary<long, OrderbookEntry>();
         private readonly SortedSet<Limit> _askLimits = new SortedSet<Limit>(AskLimitComparer.Comparer);
         private readonly SortedSet<Limit> _bidLimits = new SortedSet<Limit>(BidLimitComparer.Comparer);
 
-        public Orderbook(Security instrument)
+        public Book(Security instrument)
         {
             _instrument = instrument;
         }

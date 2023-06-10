@@ -15,5 +15,10 @@ namespace TradingEngineServer.Orders
         public OrderbookEntry Next { get; set; }
         public OrderbookEntry Previous { get; set; }
 
+        public string GetFormattedString()
+        {
+            return $"[{CreationTime:yyyy-MM-dd HH-mm-ss.fffffff}] " + CurrentOrder.GetFormattedString();
+        }
+
     }
 }

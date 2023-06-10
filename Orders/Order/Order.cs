@@ -39,5 +39,11 @@ namespace TradingEngineServer.Orders
         }
         
         private readonly IOrderCore _orderCore;
+
+        public string GetFormattedString()
+        {
+            string sideString = IsBuySide ? "Buy Order" : "Sell Order";
+            return $"[{sideString}, OrderId: {OrderId}] [Price: {Price}, Quantity: {CurrentQuantity}]";
+        }
     }
 }

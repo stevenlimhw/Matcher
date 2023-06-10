@@ -16,6 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoggerModule\LoggerModule.csproj" />
+    <ProjectReference Include="..\Instrument\Instrument.csproj" />
+    <ProjectReference Include="..\Orderbook\Orderbook.csproj" />
+    <ProjectReference Include="..\Orders\Orders.csproj" />
   </ItemGroup>
 
 </Project>
