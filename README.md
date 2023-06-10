@@ -5,10 +5,12 @@ TradingServer contains a trading engine that simulates how an orderbook changes 
 
 This is a side project to improve my familiarity with the .NET language C#, following Object-Oriented (OO) design principles, and to expose myself further into how algorithms can make an impact in the trading scene.
 
-The project is based on the [YouTube series by Coding Jesus](https://youtube.com/playlist?list=PLIkrF4j3_p-3fA9LyzSpT6yFPnqvJ02LS), but with some modifications to the implementation. Feel free to refer to this repository for inspiration when attempting your own trading engine project, and feel free to leave me some feedback as well! However, due to the fact that the series did not really provide the full implementation of the order book and did not touch on the implementation of the matching algorithm at all, the code written for these parts are fully written by me (who isn't a professional in this field, so err on the side of caution when referencing my code).
+The project is based on the [YouTube series by Coding Jesus](https://youtube.com/playlist?list=PLIkrF4j3_p-3fA9LyzSpT6yFPnqvJ02LS), but with some modifications to the implementation. Feel free to refer to this repository for inspiration when attempting your own trading engine project, and feel free to leave me some feedback as well! 
+
+However, due to the fact that the series did not really provide the full implementation of the order book and did not touch on the implementation of the matching algorithm at all, the code written for these parts are fully written by me (who isn't a professional in this field, so err on the side of caution when referencing my code).
 
 
-### <b>Progress</b>
+### <b>Action Plan</b>
 - [x] TradingEngine classes
 - [x] LoggerModule classes
 - [x] classes for Order 
@@ -26,4 +28,5 @@ The project is based on the [YouTube series by Coding Jesus](https://youtube.com
     - The mock data represents the orders placed by "other" traders.
     - The Trader class will be a "trader" entity that will participate in placing orders. The Trader class will follow a certain algorithm to engage in the trade.
     - Needs more research. Look up the different trading strategies and try to implement a variety to see how they fare.
+- [ ] Developer and User Guide
 
