@@ -1,28 +1,27 @@
+using TradingEngineServer.Orders;
+
 namespace TradingEngineServer.Orderbook
 {
     public class OrderbookSpread
     {
-        public OrderbookSpread(long? bid, long? ask)
+        public OrderbookSpread(Limit? bid, Limit? ask)
         {
             Bid = bid;
             Ask = ask;
         }
 
-        public long? Bid { get; private set; }
-        public long? Ask { get; private set; }
+        public Limit? Bid { get; private set; }
+        public Limit? Ask { get; private set; }
 
         public long? Spread
         {
             get
             {
-                if (Bid.HasValue && Ask.HasValue)
-                {
-                    return (Ask.Value - Bid.Value);
-                }
-                else
+                if (Bid == null || Ask == null)
                 {
                     return null;
                 }
+                return Ask.Price - Bid.Price;
             }
         }
     }

@@ -10,6 +10,8 @@ namespace TradingEngineServer.Orderbook
     public class Book : IRetrievalOrderbook
     {
         private readonly Security _instrument;
+
+        // dictionary key is orderId
         private readonly Dictionary<long, OrderbookEntry> _orders = new Dictionary<long, OrderbookEntry>();
         private readonly SortedSet<Limit> _askLimits = new SortedSet<Limit>(AskLimitComparer.Comparer);
         private readonly SortedSet<Limit> _bidLimits = new SortedSet<Limit>(BidLimitComparer.Comparer);
@@ -167,22 +169,38 @@ namespace TradingEngineServer.Orderbook
             return orderbookEntries;
         }
 
-        public OrderbookSpread GetSpread()
+        // The best ask has minimum price
+        public Limit? GetBestAsk()
         {
-            long? bestAsk = null, bestBid = null;
-
-            // case when there is a best ask (i.e. lowest price)
             if (_askLimits.Any() && !_askLimits.Min.IsEmpty)
             {
-                bestAsk = _askLimits.Min.Price;
+                return _askLimits.Min;
             }
+            return null;
+        }
 
-            // case when there is a best bid (i.e. highest price)
+        // The best bid has maximum price
+        public Limit? GetBestBid()
+        {
             if (_bidLimits.Any() && !_bidLimits.Max.IsEmpty)
             {
-                bestBid = _bidLimits.Max.Price;
+                return _bidLimits.Max;
             }
+            return null;
+        }
+
+        // The spread is the difference between the best ask and the best bid
+        public OrderbookSpread GetSpread()
+        {
+            Limit? bestAsk = GetBestAsk();
+            Limit? bestBid = GetBestBid();
             return new OrderbookSpread(bestBid, bestAsk);
+        }
+
+        // used for matching, when the order is consumed partially
+        public void ConsumePartialOrder(long orderId, uint consumedQuantity)
+        {
+            _orders[orderId].CurrentOrder.DecreaseQuantity(consumedQuantity);
         }
     }
 }
