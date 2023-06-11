@@ -196,5 +196,11 @@ namespace TradingEngineServer.Orderbook
             Limit? bestBid = GetBestBid();
             return new OrderbookSpread(bestBid, bestAsk);
         }
+
+        // used for matching, when the order is consumed partially
+        public void ConsumePartialOrder(long orderId, uint consumedQuantity)
+        {
+            _orders[orderId].CurrentOrder.DecreaseQuantity(consumedQuantity);
+        }
     }
 }
