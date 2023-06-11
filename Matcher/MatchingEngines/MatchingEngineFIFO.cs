@@ -29,9 +29,11 @@ namespace TradingEngineServer.Matcher
         public void Match(Order order)
         {
             // check side
-            if (order.IsBuySide && order.Price >= _orderbook.)
+            Limit bestAsk = _orderbook.GetBestAsk();
+            if (order.IsBuySide && order.Price >= bestAsk.Price)
             {
-
+                // we want to match the incoming buy order
+                
             }
             
         }
