@@ -169,24 +169,32 @@ namespace TradingEngineServer.Orderbook
             return orderbookEntries;
         }
 
-        public OrderbookSpread GetSpread()
+        // The best ask has minimum price
+        public Limit? GetBestAsk()
         {
-            long? bestAsk = null, bestBid = null;
-
-            // case when there is a best ask (i.e. lowest price)
             if (_askLimits.Any() && !_askLimits.Min.IsEmpty)
             {
-                bestAsk = _askLimits.Min.Price;
+                return _askLimits.Min;
             }
-
-            // case when there is a best bid (i.e. highest price)
-            if (_bidLimits.Any() && !_bidLimits.Max.IsEmpty)
-            {
-                bestBid = _bidLimits.Max.Price;
-            }
-            return new OrderbookSpread(bestBid, bestAsk);
+            return null;
         }
 
-        
+        // The best bid has maximum price
+        public Limit? GetBestBid()
+        {
+            if (_bidLimits.Any() && !_bidLimits.Max.IsEmpty)
+            {
+                return _bidLimits.Max;
+            }
+            return null;
+        }
+
+        // The spread is the difference between the best ask and the best bid
+        public OrderbookSpread GetSpread()
+        {
+            Limit? bestAsk = GetBestAsk();
+            Limit? bestBid = GetBestBid();
+            return new OrderbookSpread(bestBid, bestAsk);
+        }
     }
 }
