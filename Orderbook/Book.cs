@@ -10,6 +10,8 @@ namespace TradingEngineServer.Orderbook
     public class Book : IRetrievalOrderbook
     {
         private readonly Security _instrument;
+
+        // dictionary key is orderId
         private readonly Dictionary<long, OrderbookEntry> _orders = new Dictionary<long, OrderbookEntry>();
         private readonly SortedSet<Limit> _askLimits = new SortedSet<Limit>(AskLimitComparer.Comparer);
         private readonly SortedSet<Limit> _bidLimits = new SortedSet<Limit>(BidLimitComparer.Comparer);
@@ -184,5 +186,7 @@ namespace TradingEngineServer.Orderbook
             }
             return new OrderbookSpread(bestBid, bestAsk);
         }
+
+        
     }
 }
