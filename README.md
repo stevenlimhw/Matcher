@@ -1,10 +1,7 @@
-# <b>TradingServer</b>
+# <b>Matcher</b>
 
 ## <b>Overview</b>
-TradingServer simulates how an orderbook gets updated as orders are being added and matched following a particular matching algorithm, as well as trading bots which follow various algorithmic trading strategies to take advantage of market inefficiencies.
-
-This is a side project to improve my familiarity with the .NET language C#, following Object-Oriented (OO) design principles, and to expose myself further into how algorithms can make an impact in the trading scene.
-
+`Matcher` simulates how an orderbook gets updated as orders are being added and matched following a particular matching algorithm, as well as trading bots which follow various algorithmic trading strategies to take advantage of market inefficiencies. This is a side project to improve my familiarity with C#, following Object-Oriented (OO) design principles, and to expose myself further into how algorithms can make an impact in the trading scene.
 
 ## <b>Action Plan</b>
 - [x] Implement TradingEngine classes
@@ -24,10 +21,11 @@ This is a side project to improve my familiarity with the .NET language C#, foll
     - The mock data represents the orders placed by "other" traders.
     - The Trader class will be a "trader" entity that will participate in placing orders. The Trader class will follow a certain algorithm to engage in the trade.
     - Needs more research. Look up the different trading strategies and try to implement a variety to see how they fare.
-- [ ] Developer and User Guide
+- [ ] Write Developer and User Guide
 
 
-## <b>Matcher Implementation</b>
+## Design Decisions
+### <b>Matcher</b>
 <i>What is `Matcher` and how does it work?</i>
 - `Matcher` is a project directory that contains the matching engines (in the folder `MatchingEngines`) and the classes for `Trade` (in the folder `Trades`).
 
