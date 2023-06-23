@@ -14,7 +14,7 @@ namespace TradingEngineServer.Logging.LoggingConfiguration
             
             var now = DateTime.Now;
             string logDirectory = Path.Combine(_loggingConfiguration.TextLoggerConfiguration.Directory, $"{now:yyyy-MM-dd}");
-            string uniqueLogName = $"{_loggingConfiguration.TextLoggerConfiguration.Filename}--{now:HH_mm_ss}";
+            string uniqueLogName = $"Matcher_{now:HH_mm_ss}";
             string baseLogName = Path.ChangeExtension(uniqueLogName, _loggingConfiguration.TextLoggerConfiguration.FileExtension);
             string filepath = Path.Combine(logDirectory, baseLogName);
             Directory.CreateDirectory(logDirectory);
