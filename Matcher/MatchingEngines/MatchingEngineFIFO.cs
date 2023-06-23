@@ -1,13 +1,15 @@
 using TradingEngineServer.Instrument;
 using TradingEngineServer.Orderbook;
 using TradingEngineServer.Orders;
+using TradingEngineServer.Logging;
 
 namespace TradingEngineServer.Matcher
 {
     public class MatchingEngineFIFO : IMatcher
     {
+        private readonly ITextLogger _logger;
         // FIFO queue to store all incoming orders (both buy and sell sides)
-        private readonly Queue<OrderbookEntry> _incomingOrders;
+        private readonly Queue<Order> _incomingOrders;
 
         // FIFO queue to store all trades executed
         private readonly Queue<Trade> _tradesExecuted = new Queue<Trade>();
@@ -15,8 +17,9 @@ namespace TradingEngineServer.Matcher
         // orderbook that contains remaining orders
         private readonly Book _orderbook;
 
-        public MatchingEngineFIFO(Security instrument, Queue<OrderbookEntry> incomingOrders)
+        public MatchingEngineFIFO(Security instrument, Queue<Order> incomingOrders, ITextLogger logger)
         {
+            _logger = logger;
             _incomingOrders = incomingOrders;
             _orderbook = new Book(instrument);
         }
@@ -29,7 +32,7 @@ namespace TradingEngineServer.Matcher
         public void AddTrade(Trade trade)
         {
             _tradesExecuted.Append(trade);
-            return;
+            _logger.Information(nameof(Matcher), "Trade Executed: " + trade.GetFormattedString());
         }
 
         public void ConsumeFullOrder(Order order)
@@ -41,6 +44,15 @@ namespace TradingEngineServer.Matcher
         public void ConsumePartialOrder(Order order, uint volume)
         {
             _orderbook.ConsumePartialOrder(order.OrderId, volume);
+        }
+
+        public void AddToOrderbook(long filledQuantity, Order order)
+        {
+            // update the order quantity (reduce by quantity already filled)
+            order.DecreaseQuantity((uint)filledQuantity);
+            // store the remaining volume in the orderbook
+            _orderbook.AddOrder(order);
+            _logger.Information(nameof(Matcher), "Order Added...    " + order.GetFormattedString());
         }
 
         /*
@@ -56,6 +68,13 @@ namespace TradingEngineServer.Matcher
             // check side
             Limit bestAsk = _orderbook.GetBestAsk();
             Limit bestBid = _orderbook.GetBestBid();
+
+            // edge case when orderbook does not have bestAsk or bestBid
+            if ((order.IsBuySide && bestAsk == null) || (!order.IsBuySide && bestBid == null))
+            {
+                AddToOrderbook(0, order);
+                return;
+            }
 
             if (order.IsBuySide && order.Price >= bestAsk.Price)
             {
@@ -74,7 +93,7 @@ namespace TradingEngineServer.Matcher
                         break;
                     }
 
-                    // do not consume ask
+                    // do not consume ask (because ask price should be lower than requested)
                     if (askOrder.Price > order.Price)
                     {
                         break;
@@ -84,6 +103,7 @@ namespace TradingEngineServer.Matcher
                     if (filledQuantity + askOrder.CurrentQuantity <= order.CurrentQuantity)
                     {
                         filledQuantity += askOrder.CurrentQuantity;
+                        // quantity traded = askOrder.CurrentQuantity
                         Trade resultingTrade = new Trade(askOrder.Price, askOrder.CurrentQuantity);
                         AddTrade(resultingTrade);
                         ConsumeFullOrder(askOrder);
@@ -91,6 +111,7 @@ namespace TradingEngineServer.Matcher
                     // Case 2: Ask order is not fully consumed
                     else
                     {
+                        // volume = quantity traded
                         long volume = order.CurrentQuantity - filledQuantity;
                         filledQuantity += volume;
                         Trade resultingTrade = new Trade(askOrder.Price, volume);
@@ -103,26 +124,71 @@ namespace TradingEngineServer.Matcher
                 // NOTE: when incoming order has been fully filled, we need not add it into the orderbook
                 if (filledQuantity < order.CurrentQuantity)
                 {
-                    // update the order quantity (reduce by quantity already filled)
-                    order.DecreaseQuantity((uint)filledQuantity);
-                    // store the remaining volume in the orderbook
-                    _orderbook.AddOrder(order);
+                    AddToOrderbook(filledQuantity, order);
                 }
             }
 
             else if (!order.IsBuySide && order.Price <= bestBid.Price)
             {
+                long filledQuantity = 0;
+                List<OrderbookEntry> bidOrders = _orderbook.GetBidOrders();
+                foreach (var bidOrderEntry in bidOrders)
+                {
+                    Order bidOrder = bidOrderEntry.CurrentOrder;
 
+                    // we have completely filled the incoming order
+                    if (filledQuantity == order.CurrentQuantity)
+                    {
+                        break;
+                    }
+
+                    // do not consume bid (because bid price should be higher than requested)
+                    if (bidOrder.Price < order.Price)
+                    {
+                        break;
+                    }
+
+                    // Case 1: Bid order is fully consumed
+                    if (filledQuantity + bidOrder.CurrentQuantity <= order.CurrentQuantity)
+                    {
+                        filledQuantity += bidOrder.CurrentQuantity;
+                        // quantity traded = bidOrder.CurrentQuantity
+                        Trade resultingTrade = new Trade(bidOrder.Price, bidOrder.CurrentQuantity);
+                        AddTrade(resultingTrade);
+                        ConsumeFullOrder(bidOrder);
+                    }
+                    // Case 2: Bid order is not fully consumed
+                    else
+                    {
+                        // volume = quantity traded
+                        long volume = order.CurrentQuantity - filledQuantity;
+                        filledQuantity += volume;
+                        Trade resultingTrade = new Trade(bidOrder.Price, volume);
+                        AddTrade(resultingTrade);
+                        ConsumePartialOrder(bidOrder, (uint)volume);
+                    }
+                }
+
+                // incoming order has not been fully filled
+                // NOTE: when incoming order has been fully filled, we need not add it into the orderbook
+                if (filledQuantity < order.CurrentQuantity)
+                {
+                    AddToOrderbook(filledQuantity, order);
+                }
+                
             }
             
         }
 
         public void Run()
         {
+            String str = _incomingOrders.Any().ToString();
+            // _logger.Information(nameof(TradingEngineServer), "Starting Matching...");
+            // _logger.Information(nameof(TradingEngineServer), str);
             while (_incomingOrders.Any())
             {
-                OrderbookEntry entry = _incomingOrders.Dequeue();
-                Order order = entry.CurrentOrder;
+                Order order = _incomingOrders.Dequeue();
+                _logger.Information(nameof(TradingEngineServer), "Incoming order... " + order.GetFormattedString());
                 Match(order);
             }
         }

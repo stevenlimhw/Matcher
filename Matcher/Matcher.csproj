@@ -13,6 +13,7 @@
     <ProjectReference Include="..\Orders\Orders.csproj" />
     <ProjectReference Include="..\Orderbook\Orderbook.csproj" />
     <ProjectReference Include="..\Instrument\Instrument.csproj" />
+    <ProjectReference Include="..\LoggerModule\LoggerModule.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,6 +19,7 @@
     <ProjectReference Include="..\Instrument\Instrument.csproj" />
     <ProjectReference Include="..\Orderbook\Orderbook.csproj" />
     <ProjectReference Include="..\Orders\Orders.csproj" />
+    <ProjectReference Include="..\Matcher\Matcher.csproj" />
   </ItemGroup>
 
 </Project>

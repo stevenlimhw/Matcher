@@ -1,3 +1,4 @@
+using TradingEngineServer.Logging;
 using TradingEngineServer.Orders;
 
 namespace TradingEngineServer.Matcher

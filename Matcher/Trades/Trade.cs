@@ -9,5 +9,10 @@ namespace TradingEngineServer.Matcher
         }
         public long Price { get; set; }
         public long Quantity { get; set; }
+
+        public String GetFormattedString()
+        {
+            return $"[Price: {Price}, Quantity: {Quantity}]";
+        }
     }
 }
