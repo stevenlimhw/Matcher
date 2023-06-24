@@ -56,6 +56,22 @@ namespace TradingEngineServer.Core
 
                 MatchingEngineFIFO matcher = new MatchingEngineFIFO(security, incomingOrders, _logger);
                 matcher.Run();
+
+
+                DataParser parser = new DataParser();
+                string filePath = "../Data/mock_data.csv";
+                List<List<string>> parsedData = parser.ParseCsv(filePath);
+
+                foreach (List<string> row in parsedData)
+                {
+                    foreach (string field in row)
+                    {
+                        Console.Write(field + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+
                 break;
             }
             _logger.Information(nameof(TradingEngineServer), "Stopping Trading Engine Server");
