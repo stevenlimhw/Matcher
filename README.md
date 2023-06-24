@@ -14,7 +14,7 @@ This is how `Matcher` works in a nutshell:
 
 ![Sample Execution](./images/log.png)
 
-## <b>Action Plan</b>
+## <b>Progress</b>
 - [x] Implement TradingEngine classes
 - [x] Implement LoggerModule classes
 - [x] Implement classes for Order 
@@ -28,4 +28,5 @@ This is how `Matcher` works in a nutshell:
 - [x] Write some mock data (sequence of orders) in csv format
 - [x] Implement DataParser classes (to parse csv and pass data to Matcher)
 - [x] Test the TradingEngine with the mock data
-- Further additions and enhancements to be confirmed
+
+<i>Further additions and enhancements to be confirmed...</i>
