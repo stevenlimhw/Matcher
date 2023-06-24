@@ -13,7 +13,7 @@ namespace TradingEngineServer.Orderbook
         public Limit? Bid { get; private set; }
         public Limit? Ask { get; private set; }
 
-        public long? Spread
+        public double? Spread
         {
             get
             {

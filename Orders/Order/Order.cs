@@ -2,7 +2,7 @@ namespace TradingEngineServer.Orders
 {
     public class Order : IOrderCore
     {
-        public Order(IOrderCore orderCore, long price, uint quantity, bool isBuySide)
+        public Order(IOrderCore orderCore, double price, uint quantity, bool isBuySide)
         {
             Price = price;
             InitialQuantity = quantity;
@@ -17,7 +17,7 @@ namespace TradingEngineServer.Orders
 
         }
 
-        public long Price { get; private set; }
+        public double Price { get; private set; }
         public uint InitialQuantity { get; private set; }
         public uint CurrentQuantity { get; private set; }
         public bool IsBuySide { get; private set; }

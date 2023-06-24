@@ -2,6 +2,7 @@ using TradingEngineServer.Instrument;
 using TradingEngineServer.Orderbook;
 using TradingEngineServer.Orders;
 using TradingEngineServer.Logging;
+using System.Diagnostics;
 
 namespace TradingEngineServer.Matcher
 {
@@ -31,8 +32,8 @@ namespace TradingEngineServer.Matcher
 
         public void AddTrade(Trade trade)
         {
-            _tradesExecuted.Append(trade);
-            _logger.Information(nameof(Matcher), "Trade Executed: " + trade.GetFormattedString());
+            _tradesExecuted.Enqueue(trade);
+            _logger.Information(nameof(Matcher), "Trade Executed...   " + trade.GetFormattedString());
         }
 
         public void ConsumeFullOrder(Order order)
@@ -52,7 +53,7 @@ namespace TradingEngineServer.Matcher
             order.DecreaseQuantity((uint)filledQuantity);
             // store the remaining volume in the orderbook
             _orderbook.AddOrder(order);
-            _logger.Information(nameof(Matcher), "Order Added...    " + order.GetFormattedString());
+            _logger.Information(nameof(Matcher), "Added to Book...    " + order.GetFormattedString());
         }
 
         /*
@@ -175,22 +176,33 @@ namespace TradingEngineServer.Matcher
                 {
                     AddToOrderbook(filledQuantity, order);
                 }
-                
+
             }
-            
+
+            else
+            {
+                // order did not cross the spread, place in order book
+                AddToOrderbook(0, order);
+            }
+
         }
 
         public void Run()
         {
-            String str = _incomingOrders.Any().ToString();
-            // _logger.Information(nameof(TradingEngineServer), "Starting Matching...");
-            // _logger.Information(nameof(TradingEngineServer), str);
+            var watch = Stopwatch.StartNew();
+
+            _logger.Information(nameof(Matcher), "Starting Matching...");
             while (_incomingOrders.Any())
             {
                 Order order = _incomingOrders.Dequeue();
-                _logger.Information(nameof(TradingEngineServer), "Incoming order... " + order.GetFormattedString());
+                _logger.Information(nameof(TradingEngineServer), "Incoming order...   " + order.GetFormattedString());
                 Match(order);
             }
+
+            watch.Stop();
+            var elapsedTimeInMilliseconds = watch.ElapsedMilliseconds;
+            _logger.Information(nameof(Matcher), "Matching Process Took " + elapsedTimeInMilliseconds + " ms");
+
         }
     }
 }

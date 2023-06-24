@@ -8,11 +8,11 @@ namespace TradingEngineServer.Orders
      */
     public class Limit
     {
-        public Limit(long price)
+        public Limit(double price)
         {
             Price = price;
         }
-        public long Price { get; set; }
+        public double Price { get; set; }
         public OrderbookEntry Head { get; set; }
         public OrderbookEntry Tail { get; set; }
         
